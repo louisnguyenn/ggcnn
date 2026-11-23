@@ -7,3 +7,14 @@ output
 *.pyc
 
 /.python-version
+
+.venv/
+__pycache__/
+*.pyc
+
+data/
+ggcnn_weights_cornell/
+*.pt
+*.pth
+
+.vscode/

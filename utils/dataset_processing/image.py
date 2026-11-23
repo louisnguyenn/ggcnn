@@ -182,8 +182,12 @@ class DepthImage(Image):
         # Scale to keep as float, but has to be in bounds -1:1 to keep opencv happy.
         scale = np.abs(self.img).max()
         self.img = self.img.astype(np.float32) / scale  # Has to be float32, 64 not supported.
-        self.img = cv2.inpaint(self.img, mask, 1, cv2.INPAINT_NS)
-
+        self.img = cv2.inpaint(
+            self.img.astype(np.float32),
+            mask.astype(np.uint8),
+            1,
+            cv2.INPAINT_NS
+        )
         # Back to original size and value range.
         self.img = self.img[1:-1, 1:-1]
         self.img = self.img * scale
